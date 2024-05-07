@@ -7,7 +7,6 @@ import { createJwtToken } from './auth.utils';
 const loginUserIntoDb = async (payload: TLoginUser) => {
   // check if user already exists or not
   const existingUser = await UserModel.isUserExistsByEmail(payload.email);
-  console.log(existingUser);
   if (!existingUser) {
     return Error('Invalid email');
   }
@@ -25,8 +24,8 @@ const loginUserIntoDb = async (payload: TLoginUser) => {
   const jwtPayload = { email: existingUser?.email };
   const token = createJwtToken(
     jwtPayload,
-    config.jwt_access_secret,
-    config.jwt_access_expires_in,
+    config.jwt_access_secret as string,
+    config.jwt_access_expires_in as string,
   );
 
   return token;
