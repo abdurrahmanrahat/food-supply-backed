@@ -19,7 +19,7 @@
 
 - API Endpoints:
 
-  - POST `/api/auth/login`
+  - POST `/api/v1/auth/login`
 
     - Description: Authenticates user and returns a JWT token.
     - Request:
@@ -37,7 +37,7 @@
       }
       ```
 
-  - POST `/api/auth/register`
+  - POST `/api/v1/users/register`
     - Description: Registers a new user.
     - Request:
       ```json

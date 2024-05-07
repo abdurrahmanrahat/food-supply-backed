@@ -8,7 +8,7 @@ const loginUserIntoDb = async (payload: TLoginUser) => {
   // check if user already exists or not
   const existingUser = await UserModel.isUserExistsByEmail(payload.email);
   if (!existingUser) {
-    return Error('Invalid email');
+    throw new Error('Invalid email');
   }
 
   // compare hashed password
@@ -17,7 +17,7 @@ const loginUserIntoDb = async (payload: TLoginUser) => {
     existingUser.password,
   );
   if (!isPasswordValid) {
-    return Error('Invalid password');
+    throw new Error('Invalid password');
   }
 
   // Generate JWT token
