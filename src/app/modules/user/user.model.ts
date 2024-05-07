@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import { Schema, model } from 'mongoose';
+import config from '../../config';
 import { TUser, UserStaticModel } from './user.interface';
 
 const userSchema = new Schema<TUser, UserStaticModel>({
@@ -26,6 +27,23 @@ userSchema.statics.isPasswordMatched = async function (
 
   return isPasswordValid;
 };
+
+// pre save middleware
+userSchema.pre('save', async function (next) {
+  // hashing password and saved into db
+  this.password = await bcrypt.hash(
+    this.password,
+    Number(config.bcrypt_salt_rounds),
+  );
+
+  next();
+});
+
+// post save middleware
+userSchema.post('save', function (doc, next) {
+  doc.password = '';
+  next();
+});
 
 // model
 export const UserModel = model<TUser, UserStaticModel>('User', userSchema);
