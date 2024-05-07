@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
 import { Schema, model } from 'mongoose';
-import { TUser } from './user.interface';
+import { TUser, UserStaticModel } from './user.interface';
 
-const userSchema = new Schema<TUser>({
+const userSchema = new Schema<TUser, UserStaticModel>({
   name: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
@@ -28,4 +28,4 @@ userSchema.statics.isPasswordMatched = async function (
 };
 
 // model
-export const UserModel = model<TUser>('User', userSchema);
+export const UserModel = model<TUser, UserStaticModel>('User', userSchema);
