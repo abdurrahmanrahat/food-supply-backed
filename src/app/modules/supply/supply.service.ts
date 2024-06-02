@@ -12,12 +12,19 @@ const getAllSuppliesFromDB = async () => {
 };
 
 const getSingleSupplyFromDB = async (id: string) => {
-  const result = await Supply.findById(id);
+  const result = await Supply.findById({ _id: id });
+  return result;
+};
+
+const updateSupplyIntoDB = async (id: string, payload: Partial<TSupply>) => {
+  const result = await Supply.findByIdAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
   return result;
 };
 
 const deleteSupplyFromDB = async (id: string) => {
-  const result = await Supply.findByIdAndDelete(id);
+  const result = await Supply.findByIdAndDelete({ _id: id });
   return result;
 };
 
@@ -25,5 +32,6 @@ export const SupplyServices = {
   createSupplyIntoDB,
   getAllSuppliesFromDB,
   getSingleSupplyFromDB,
+  updateSupplyIntoDB,
   deleteSupplyFromDB,
 };

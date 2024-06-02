@@ -37,6 +37,18 @@ const getSingleSupply = catchAsync(async (req, res) => {
   });
 });
 
+const updateSupply = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = SupplyServices.updateSupplyIntoDB(id, req.body);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Supply updated successfully',
+    data: result,
+  });
+});
+
 const deleteSupply = catchAsync(async (req, res) => {
   const { id } = req.params;
   const result = SupplyServices.deleteSupplyFromDB(id);
@@ -53,5 +65,6 @@ export const SupplyControllers = {
   createSupply,
   getAllSupplies,
   getSingleSupply,
+  updateSupply,
   deleteSupply,
 };

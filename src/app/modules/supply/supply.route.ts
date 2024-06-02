@@ -15,7 +15,11 @@ router.get('/', SupplyControllers.getAllSupplies);
 
 router.get('/:id', SupplyControllers.getSingleSupply);
 
-router.patch('/:id');
+router.patch(
+  '/:id',
+  validateRequest(SupplyValidations.updateSupplyValidationSchema),
+  SupplyControllers.updateSupply,
+);
 
 router.delete('/:id', SupplyControllers.deleteSupply);
 
