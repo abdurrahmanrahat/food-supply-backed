@@ -3,6 +3,7 @@ import { AuthRoutes } from '../modules/auth/auth.route';
 import { DonationRoutes } from '../modules/donation/donation.route';
 import { SupplyRoutes } from '../modules/supply/supply.route';
 import { UserRoutes } from '../modules/user/user.route';
+import { VolunteerRoutes } from '../modules/volunteer/volunteer.route';
 
 const router = express.Router();
 
@@ -12,6 +13,7 @@ const moduleRoutes = [
   { path: '/auth', route: AuthRoutes },
   { path: '/supplies', route: SupplyRoutes },
   { path: '/donations', route: DonationRoutes },
+  { path: '/volunteers', route: VolunteerRoutes },
 ];
 
 moduleRoutes.forEach((item) => router.use(item.path, item.route));
