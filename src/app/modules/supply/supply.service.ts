@@ -1,3 +1,5 @@
+import QueryBuilder from '../../builder/QuetyBuilder';
+import { supplySearchableFields } from './supply.constant';
 import { TSupply } from './supply.interface';
 import { Supply } from './supply.model';
 
@@ -6,8 +8,13 @@ const createSupplyIntoDB = async (payload: TSupply) => {
   return result;
 };
 
-const getAllSuppliesFromDB = async () => {
-  const result = await Supply.find();
+const getAllSuppliesFromDB = async (query: Record<string, unknown>) => {
+  const supplyQuery = new QueryBuilder(Supply.find(), query)
+    .search(supplySearchableFields)
+    .filter()
+    .pagination();
+
+  const result = await supplyQuery.modelQuery;
   return result;
 };
 

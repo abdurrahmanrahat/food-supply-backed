@@ -15,7 +15,7 @@ const createSupply = catchAsync(async (req, res) => {
 });
 
 const getAllSupplies = catchAsync(async (req, res) => {
-  const result = await SupplyServices.getAllSuppliesFromDB();
+  const result = await SupplyServices.getAllSuppliesFromDB(req.query);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
