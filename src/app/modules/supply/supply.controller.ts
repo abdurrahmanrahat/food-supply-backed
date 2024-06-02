@@ -14,6 +14,18 @@ const createSupply = catchAsync(async (req, res) => {
   });
 });
 
+const getAllSupplies = catchAsync(async (req, res) => {
+  const result = SupplyServices.getAllSuppliesFromDB();
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Supply retrieved successfully',
+    data: result,
+  });
+});
+
 export const SupplyControllers = {
   createSupply,
+  getAllSupplies,
 };

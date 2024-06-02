@@ -11,7 +11,7 @@ router.post(
   SupplyControllers.createSupply,
 );
 
-router.get('/');
+router.get('/', SupplyControllers.getAllSupplies);
 
 router.get('/:id');
 

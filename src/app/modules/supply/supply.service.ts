@@ -6,6 +6,12 @@ const createSupplyIntoDB = async (payload: TSupply) => {
   return result;
 };
 
+const getAllSuppliesFromDB = async () => {
+  const result = await Supply.find();
+  return result;
+};
+
 export const SupplyServices = {
   createSupplyIntoDB,
+  getAllSuppliesFromDB,
 };
