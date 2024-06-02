@@ -1,6 +1,7 @@
 import express from 'express';
 import { AuthRoutes } from '../modules/auth/auth.route';
 import { DonationRoutes } from '../modules/donation/donation.route';
+import { GratitudeRoutes } from '../modules/gratitude/gratitude.route';
 import { SupplyRoutes } from '../modules/supply/supply.route';
 import { TestimonialRoutes } from '../modules/testimonial/testimonial.route';
 import { UserRoutes } from '../modules/user/user.route';
@@ -16,6 +17,7 @@ const moduleRoutes = [
   { path: '/donations', route: DonationRoutes },
   { path: '/volunteers', route: VolunteerRoutes },
   { path: '/testimonials', route: TestimonialRoutes },
+  { path: '/gratitudes', route: GratitudeRoutes },
 ];
 
 moduleRoutes.forEach((item) => router.use(item.path, item.route));
