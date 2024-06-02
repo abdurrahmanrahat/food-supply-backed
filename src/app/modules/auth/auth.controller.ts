@@ -13,7 +13,6 @@ const loginUser = async (req: Request, res: Response) => {
       token: result,
     });
   } catch (error: any) {
-    console.log(error);
     res.status(500).json({
       success: false,
       message: 'Something went wrong.',
