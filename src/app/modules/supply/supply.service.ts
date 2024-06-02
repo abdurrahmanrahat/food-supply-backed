@@ -11,7 +11,13 @@ const getAllSuppliesFromDB = async () => {
   return result;
 };
 
+const getSingleSupplyFromDB = async (id: string) => {
+  const result = await Supply.findById(id);
+  return result;
+};
+
 export const SupplyServices = {
   createSupplyIntoDB,
   getAllSuppliesFromDB,
+  getSingleSupplyFromDB,
 };

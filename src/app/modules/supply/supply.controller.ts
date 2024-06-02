@@ -25,7 +25,20 @@ const getAllSupplies = catchAsync(async (req, res) => {
   });
 });
 
+const getSingleSupply = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = SupplyServices.getSingleSupplyFromDB(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Supply retrieved successfully',
+    data: result,
+  });
+});
+
 export const SupplyControllers = {
   createSupply,
   getAllSupplies,
+  getSingleSupply,
 };

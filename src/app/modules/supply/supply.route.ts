@@ -13,7 +13,7 @@ router.post(
 
 router.get('/', SupplyControllers.getAllSupplies);
 
-router.get('/:id');
+router.get('/:id', SupplyControllers.getSingleSupply);
 
 router.patch('/:id');
 
