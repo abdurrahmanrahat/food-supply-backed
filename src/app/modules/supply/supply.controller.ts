@@ -4,7 +4,7 @@ import { sendResponse } from '../../utils/sendResponse';
 import { SupplyServices } from './supply.service';
 
 const createSupply = catchAsync(async (req, res) => {
-  const result = SupplyServices.createSupplyIntoDB(req.body);
+  const result = await SupplyServices.createSupplyIntoDB(req.body);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -15,7 +15,7 @@ const createSupply = catchAsync(async (req, res) => {
 });
 
 const getAllSupplies = catchAsync(async (req, res) => {
-  const result = SupplyServices.getAllSuppliesFromDB();
+  const result = await SupplyServices.getAllSuppliesFromDB();
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -27,7 +27,7 @@ const getAllSupplies = catchAsync(async (req, res) => {
 
 const getSingleSupply = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = SupplyServices.getSingleSupplyFromDB(id);
+  const result = await SupplyServices.getSingleSupplyFromDB(id);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -39,7 +39,7 @@ const getSingleSupply = catchAsync(async (req, res) => {
 
 const updateSupply = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = SupplyServices.updateSupplyIntoDB(id, req.body);
+  const result = await SupplyServices.updateSupplyIntoDB(id, req.body);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -51,7 +51,7 @@ const updateSupply = catchAsync(async (req, res) => {
 
 const deleteSupply = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = SupplyServices.deleteSupplyFromDB(id);
+  const result = await SupplyServices.deleteSupplyFromDB(id);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
