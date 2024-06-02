@@ -3,11 +3,16 @@ import { Schema, model } from 'mongoose';
 import config from '../../config';
 import { TUser, UserStaticModel } from './user.interface';
 
-const userSchema = new Schema<TUser, UserStaticModel>({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  password: { type: String, required: true },
-});
+const userSchema = new Schema<TUser, UserStaticModel>(
+  {
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    password: { type: String, required: true },
+  },
+  {
+    timestamps: true,
+  },
+);
 
 // check user exists or not
 userSchema.statics.isUserExistsByEmail = async function (email: string) {
