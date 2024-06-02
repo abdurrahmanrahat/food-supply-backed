@@ -1,30 +1,24 @@
-import { Request, Response } from 'express';
+import httpStatus from 'http-status';
+import catchAsync from '../../utils/catchAsync';
+import { sendResponse } from '../../utils/sendResponse';
 import { UserServices } from './user.service';
 import { userValidationSchema } from './user.validation';
 
-const createUser = async (req: Request, res: Response) => {
-  try {
-    const user = req.body;
+const createUser = catchAsync(async (req, res) => {
+  const user = req.body;
 
-    // data validation using zod.
-    const validateUser = userValidationSchema.parse(user);
+  // data validation using zod.
+  const validateUser = userValidationSchema.parse(user);
 
-    const result = await UserServices.createUserInfoDb(validateUser);
+  const result = await UserServices.createUserInfoDb(validateUser);
 
-    res.status(201).json({
-      success: true,
-      message: 'User registered successfully',
-      data: result,
-    });
-  } catch (error: any) {
-    console.log(error);
-    res.status(500).json({
-      success: false,
-      message: 'Something went wrong.',
-      error: error?.message,
-    });
-  }
-};
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'User registered successfully',
+    data: result,
+  });
+});
 
 export const UserControllers = {
   createUser,
