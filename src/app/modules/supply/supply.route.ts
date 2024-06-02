@@ -17,6 +17,6 @@ router.get('/:id', SupplyControllers.getSingleSupply);
 
 router.patch('/:id');
 
-router.delete('/:id');
+router.delete('/:id', SupplyControllers.deleteSupply);
 
 export const SupplyRoutes = router;

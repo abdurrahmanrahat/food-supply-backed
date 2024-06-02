@@ -20,7 +20,7 @@ const getAllSupplies = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Supply retrieved successfully',
+    message: 'Supplies retrieved successfully',
     data: result,
   });
 });
@@ -37,8 +37,21 @@ const getSingleSupply = catchAsync(async (req, res) => {
   });
 });
 
+const deleteSupply = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = SupplyServices.deleteSupplyFromDB(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Supply deleted successfully',
+    data: result,
+  });
+});
+
 export const SupplyControllers = {
   createSupply,
   getAllSupplies,
   getSingleSupply,
+  deleteSupply,
 };

@@ -16,8 +16,14 @@ const getSingleSupplyFromDB = async (id: string) => {
   return result;
 };
 
+const deleteSupplyFromDB = async (id: string) => {
+  const result = await Supply.findByIdAndDelete(id);
+  return result;
+};
+
 export const SupplyServices = {
   createSupplyIntoDB,
   getAllSuppliesFromDB,
   getSingleSupplyFromDB,
+  deleteSupplyFromDB,
 };
