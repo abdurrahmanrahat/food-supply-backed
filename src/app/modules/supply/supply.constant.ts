@@ -1,5 +1,1 @@
-export const supplySearchableFields = [
-  'supplyTitle',
-  'supplyCategory',
-  'supplyDesc',
-];
+export const supplySearchableFields = ['supplyTitle', 'supplyCategory'];

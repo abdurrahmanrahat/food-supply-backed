@@ -14,7 +14,15 @@ const getAllSuppliesFromDB = async (query: Record<string, unknown>) => {
     .filter()
     .pagination();
 
-  const result = await supplyQuery.modelQuery;
+  const data = await supplyQuery.modelQuery;
+
+  const document = await Supply.find();
+  const documentCount = document?.length;
+
+  const result = {
+    data,
+    documentCount,
+  };
   return result;
 };
 
